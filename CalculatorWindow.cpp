@@ -14,3 +14,13 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::on_Off_clicked()
+{
+    close();
+}
+
+void MainWindow::on_Backspace_clicked()
+{
+
+}
