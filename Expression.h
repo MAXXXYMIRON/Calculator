@@ -7,6 +7,10 @@ using namespace std;
 class Expression
 {
     string exep;
+    const string Digits = "1234567890";
+    const string Operations = "+-*/^√";
+    const string Functions = "SinCosTanLnExp";
+    const string Separators = "().";
 public:
     Expression();
 
@@ -17,10 +21,10 @@ public:
     //Добавить цифру в выражение
     void AddDigit(char digit);
 
-    //Добавить в выражение операцию, которая записывается спереди(Sin, Cos, √ и т.д.)
+    //Добавить в выражение операцию, типа Sin, Cos, √ и т.д.
     void AddInFrontOperation(string operation);
 
-    //Добавить в выражение операцию, которая записывается сзадти(+, -, * и т.д.)
+    //Добавить в выражение операцию, типа +, -, * и т.д.
     void AddBehindOperations(char operations);
 
     //Дабавть скобку
