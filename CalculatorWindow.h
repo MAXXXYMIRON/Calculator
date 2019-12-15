@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QKeyEvent>
 #include "Expression.h"
 
 QT_BEGIN_NAMESPACE
@@ -70,6 +71,12 @@ private slots:
     void on_CloseBraket_clicked();
 
     void on_Drop_clicked();
+
+    void keyPressEvent(QKeyEvent *event);
+
+    void on_Equal_clicked();
+
+    void on_History_clicked();
 
 private:
     Ui::MainWindow *ui;

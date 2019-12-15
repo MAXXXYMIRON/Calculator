@@ -175,3 +175,107 @@ void MainWindow::on_Drop_clicked()
     expres.Drop();
     ui->Expression->setText(QString::fromStdString(expres.GetExpression()));
 }
+
+void MainWindow::on_Equal_clicked()
+{
+
+}
+
+void MainWindow::on_History_clicked()
+{
+
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    switch(event->key())
+    {
+    case Qt::Key_Escape:
+        on_Off_clicked();
+        break;
+    case Qt::Key_Backspace:
+        on_Backspace_clicked();
+        break;
+    case Qt::Key_Plus:
+        on_Add_clicked();
+        break;
+    case Qt::Key_Minus:
+        on_Sub_clicked();
+        break;
+    case Qt::Key_Asterisk:
+        on_Mul_clicked();
+        break;
+    case Qt::Key_Slash:
+        on_Div_clicked();
+        break;
+    case Qt::Key_AsciiCircum:
+        on_Pow_clicked();
+        break;
+    case Qt::Key_0:
+        on_Zero_clicked();
+        break;
+    case Qt::Key_1:
+        on_One_clicked();
+        break;
+    case Qt::Key_2:
+        on_Two_clicked();
+        break;
+    case Qt::Key_3:
+        on_Three_clicked();
+        break;
+    case Qt::Key_4:
+        on_Four_clicked();
+        break;
+    case Qt::Key_5:
+        on_Five_clicked();
+        break;
+    case Qt::Key_6:
+        on_Six_clicked();
+        break;
+    case Qt::Key_7:
+        on_Seven_clicked();
+        break;
+    case Qt::Key_8:
+        on_Eight_clicked();
+        break;
+    case Qt::Key_9:
+        on_Nine_clicked();
+        break;
+    case Qt::Key_Period:
+        on_Point_clicked();
+        break;
+    case Qt::Key_Q:
+        on_Sqrt_clicked();
+        break;
+    case Qt::Key_S:
+        on_Sin_clicked();
+        break;
+    case Qt::Key_C:
+        on_Cos_clicked();
+        break;
+    case Qt::Key_T:
+        on_Tan_clicked();
+        break;
+    case Qt::Key_L:
+        on_Ln_clicked();
+        break;
+    case Qt::Key_E:
+        on_Exp_clicked();
+        break;
+    case Qt::Key_ParenLeft:
+        on_OpenBraket_clicked();
+        break;
+    case Qt::Key_ParenRight:
+        on_CloseBraket_clicked();
+        break;
+    case Qt::Key_End:
+        on_Drop_clicked();
+        break;
+    case Qt::Key_Enter:
+        on_Equal_clicked();
+        break;
+    case Qt::Key_H:
+        on_History_clicked();
+        break;
+    }
+}
