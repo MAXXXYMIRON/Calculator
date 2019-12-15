@@ -8,8 +8,8 @@ class Expression
 {
     string exep;
     const string Digits = "1234567890";
-    const string Operations = "+-*/^√";
-    const string Functions = "SinCosTanLnExp";
+    const string Operations = "+-*/^";
+    const string Functions = "SinCosTanLnExp√";
     const string Separators = "().";
 public:
     Expression();
@@ -35,6 +35,12 @@ public:
 
     //Добавить точку
     void AddPoint();
+
+   //Стереть последнюю цифру, операцию, функцию или разделитель
+    void Backspace();
+
+    //Очистить выражение
+    void Drop();
 };
 
 #endif // EXEPTION_H
