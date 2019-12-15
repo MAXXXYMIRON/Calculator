@@ -101,8 +101,20 @@ void Expression::AddPoint()
 {
     if(Digits.find(exep[exep.size() - 1]) != string::npos)
     {
-        exep.push_back('.');
+        if (!SecondPoint())
+            exep.push_back('.');
     }
+}
+
+//Проверка чтобы не поставить вторую точку в числе
+bool Expression::SecondPoint()
+{
+    for(int i = exep.size() - 1; i >= 0; i--)
+    {
+        if (exep[i] == '.') return true;
+        if (Digits.find(exep[i]) == string::npos) break;
+    }
+    return false;
 }
 
 //Стереть последнюю цифру, операцию, функцию или разделитель
