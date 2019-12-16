@@ -43,5 +43,4 @@ string History::ReadFile()
 void History::ClearFile()
 {
     File.close();
-    int remove(const char* NameFile);
 }
