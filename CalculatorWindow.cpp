@@ -17,6 +17,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Off_clicked()
 {
+    hist.ClearFile();
     close();
 }
 
@@ -178,12 +179,27 @@ void MainWindow::on_Drop_clicked()
 
 void MainWindow::on_Equal_clicked()
 {
-
+    hist.WriteFile(expres.GetExpression());
 }
 
 void MainWindow::on_History_clicked()
 {
-
+    try
+    {
+        string h = hist.ReadFile();
+    }
+    catch (History::ERRORS e)
+    {
+        switch(e)
+        {
+        case History::FailedOpenFileRead:
+            QMessageBox::warning(this, "Внимание", "Не удалось открыть историю вычислений");
+            break;
+        default:
+            QMessageBox::warning(this, "Внимание", "История вычислений пуста");
+            break;
+        }
+    }
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)

@@ -3,7 +3,10 @@
 
 #include <QMainWindow>
 #include <QKeyEvent>
+#include<QMessageBox>
 #include "Expression.h"
+#include "parser.h"
+#include "history.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -81,5 +84,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Expression expres;
+    Parser pars;
+    History hist;
 };
 #endif // MAINWINDOW_H

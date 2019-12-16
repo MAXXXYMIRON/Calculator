@@ -2,57 +2,57 @@
 
 Expression::Expression()
 {
-    exep = "0";
+    exp = "0";
 }
 
 //Гетер выражения
 string Expression::GetExpression()
 {
-    return exep;
+    return exp;
 }
 
 //Добавить цифру в выражение
 void Expression::AddDigit(char digit)
 {
-    if(exep == "0")
+    if(exp == "0")
     {
-        exep = digit;
+        exp = digit;
         return;
     }
-    if(exep[exep.size() - 1] != ')')
+    if(exp[exp.size() - 1] != ')')
     {
-        exep.push_back(digit);
+        exp.push_back(digit);
     }
 }
 
 //Добавить в выражение операцию, типа Sin, Cos, √ и т.д.
-void Expression::AddInFrontOperation(string operation)
+void Expression::AddInFrontOperation(const string& operation)
 {
-    if(exep == "0")
+    if(exp == "0")
     {
-        exep = operation;
+        exp = operation;
         return;
     }
-    if(Operations.find(exep[exep.size() - 1]) != string::npos
-    || Functions.find(exep[exep.size() - 1]) != string::npos
-    || exep[exep.size() - 1] == '(')
+    if(Operations.find(exp[exp.size() - 1]) != string::npos
+    || Functions.find(exp[exp.size() - 1]) != string::npos
+    || exp[exp.size() - 1] == '(')
     {
-        exep += operation;
+        exp += operation;
     }
 }
 
 //Добавить в выражение операцию, типа +, -, *, ^
 void Expression::AddBehindOperations(char operations)
 {
-    if(Operations.find(exep[exep.size() - 1]) != string::npos)
+    if(Operations.find(exp[exp.size() - 1]) != string::npos)
     {
-        exep[exep.size() - 1] = operations;
+        exp[exp.size() - 1] = operations;
         return;
     }
-    if(Digits.find(exep[exep.size() - 1]) != string::npos
-    || exep[exep.size() - 1] == ')')
+    if(Digits.find(exp[exp.size() - 1]) != string::npos
+    || exp[exp.size() - 1] == ')')
     {
-        exep.push_back(operations);
+        exp.push_back(operations);
     }
 }
 
@@ -61,37 +61,37 @@ void Expression::AddBracket(char bracket)
 {
     if(bracket == '(')
     {
-        if(exep == "0")
+        if(exp == "0")
         {
-            exep = bracket;
+            exp = bracket;
             return;
         }
-        if(Operations.find(exep[exep.size() - 1]) != string::npos
-        || Functions.find(exep[exep.size() - 1]) != string::npos
-        || exep[exep.size() - 1] == bracket)
+        if(Operations.find(exp[exp.size() - 1]) != string::npos
+        || Functions.find(exp[exp.size() - 1]) != string::npos
+        || exp[exp.size() - 1] == bracket)
         {
-            exep.push_back(bracket);
+            exp.push_back(bracket);
         }
     }
     else if(bracket == ')')
     {
         if(!CheckCloseBracket()) return;
-        if(Digits.find(exep[exep.size() - 1]) != string::npos
-        || exep[exep.size() - 1] == bracket)
+        if(Digits.find(exp[exp.size() - 1]) != string::npos
+        || exp[exp.size() - 1] == bracket)
         {
-            exep.push_back(bracket);
+            exp.push_back(bracket);
         }
     }
 }
 
 //Проверка возможности поставить закрываюшую скобку
-bool Expression::CheckCloseBracket()
+bool Expression::CheckCloseBracket() const
 {
     unsigned open = 0, close = 0;
-    for(unsigned i = 0; i < exep.size(); i++)
+    for(unsigned i = 0; i < exp.size(); i++)
     {
-        if(exep[i] == '(') open++;
-        else if (exep[i] == ')') close++;
+        if(exp[i] == '(') open++;
+        else if (exp[i] == ')') close++;
     }
     return (open > close) ? true : false;
 }
@@ -99,20 +99,20 @@ bool Expression::CheckCloseBracket()
 //Добавить точку
 void Expression::AddPoint()
 {
-    if(Digits.find(exep[exep.size() - 1]) != string::npos)
+    if(Digits.find(exp[exp.size() - 1]) != string::npos)
     {
         if (!SecondPoint())
-            exep.push_back('.');
+            exp.push_back('.');
     }
 }
 
 //Проверка чтобы не поставить вторую точку в числе
-bool Expression::SecondPoint()
+bool Expression::SecondPoint() const
 {
-    for(int i = exep.size() - 1; i >= 0; i--)
+    for(int i = exp.size() - 1; i >= 0; i--)
     {
-        if (exep[i] == '.') return true;
-        if (Digits.find(exep[i]) == string::npos) break;
+        if (exp[i] == '.') return true;
+        if (Digits.find(exp[i]) == string::npos) break;
     }
     return false;
 }
@@ -120,40 +120,40 @@ bool Expression::SecondPoint()
 //Стереть последнюю цифру, операцию, функцию или разделитель
  void Expression::Backspace()
  {
-     unsigned index = exep.size() - 1;
-     if(Digits.find(exep[exep.size() - 1]) != string::npos)
+     unsigned index = exp.size() - 1;
+     if(Digits.find(exp[exp.size() - 1]) != string::npos)
      {
-         exep.erase(index, 1);
+         exp.erase(index, 1);
      }
-     else if(Operations.find(exep[exep.size() - 1]) != string::npos)
+     else if(Operations.find(exp[exp.size() - 1]) != string::npos)
      {
-         exep.erase(index, 1);
+         exp.erase(index, 1);
      }
-     else if(Separators.find(exep[exep.size() - 1]) != string::npos)
+     else if(Separators.find(exp[exp.size() - 1]) != string::npos)
      {
-         exep.erase(index, 1);
+         exp.erase(index, 1);
      }
-     else if(Functions.find(exep[exep.size() - 1]) != string::npos)
+     else if(Functions.find(exp[exp.size() - 1]) != string::npos)
      {
-        if(exep.substr(index - 1) == "Ln")
+        if(exp.substr(index - 1) == "Ln")
         {
-            exep.erase(index - 1, 2);
+            exp.erase(index - 1, 2);
         }
-        else if(exep.substr(index - 2) == "Sin"
-        || exep.substr(index - 2) == "Cos"
-        || exep.substr(index - 2) == "Tan"
-        || exep.substr(index - 2) == "Exp"
-        || exep.substr(index - 2) == "√")
+        else if(exp.substr(index - 2) == "Sin"
+        || exp.substr(index - 2) == "Cos"
+        || exp.substr(index - 2) == "Tan"
+        || exp.substr(index - 2) == "Exp"
+        || exp.substr(index - 2) == "√")
         {
-            exep.erase(index - 2, 3);
+            exp.erase(index - 2, 3);
         }
      }
 
-     if(exep == "") exep = "0";
+     if(exp == "") exp = "0";
  }
 
 //Очистить выражение
 void Expression::Drop()
 {
-    exep = "0";
+    exp = "0";
 }

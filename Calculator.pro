@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Expression.cpp \
+    history.cpp \
     main.cpp \
     CalculatorWindow.cpp \
     parser.cpp
@@ -24,6 +25,7 @@ SOURCES += \
 HEADERS += \
     CalculatorWindow.h \
     Expression.h \
+    history.h \
     parser.h
 
 FORMS += \

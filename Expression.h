@@ -6,7 +6,7 @@ using namespace std;
 
 class Expression
 {
-    string exep;
+    string exp;
     const string Digits = "1234567890";
     const string Operations = "+-*/^";
     const string Functions = "SinCosTanLnExp√";
@@ -22,7 +22,7 @@ public:
     void AddDigit(char digit);
 
     //Добавить в выражение операцию, типа Sin, Cos, √ и т.д.
-    void AddInFrontOperation(string operation);
+    void AddInFrontOperation(const string& operation);
 
     //Добавить в выражение операцию, типа +, -, * и т.д.
     void AddBehindOperations(char operations);
@@ -31,13 +31,13 @@ public:
     void AddBracket(char bracket);
 
     //Проверка возможности поставить закрываюшую скобку
-    bool CheckCloseBracket();
+    bool CheckCloseBracket() const;
 
     //Добавить точку
     void AddPoint();
 
     //Проверка чтобы не поставить вторую точку в числе
-    bool SecondPoint();
+    bool SecondPoint() const;
 
    //Стереть последнюю цифру, операцию, функцию или разделитель
     void Backspace();
