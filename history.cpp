@@ -2,45 +2,18 @@
 
 History::History()
 {
-    NameFile = "HistoryCalculate.txt";
-    File.open(NameFile, fstream::in | fstream::out | fstream::app);
+
 }
 
-History::History(string fileName)
+//Записать выражение в историю
+void History::WriteHist(const string& Str)
 {
-    NameFile = fileName;
-    File.open(NameFile, fstream::in | fstream::out | fstream::app);
+    H.push_back(Str);
 }
 
-
-//Запись в файл
-void History::WriteFile(string Str)
+//Считать историю
+vector<string> History::GetHistory() const
 {
-    if(!File.is_open()) return;
-    File << Str << "\n";
-}
-
-
-//Чтение из файла
-string History::ReadFile()
-{
-    if(!File.is_open()) throw FailedOpenFileRead;
-    File.seekg(0);
-
-    string Str, h = "";
-    while(!File.eof())
-    {
-        getline(File, Str);
-        h += Str + "\n\n";
-    }
-
-    if (h == "\n\n") throw IsEmpty;
-    return h;
-}
-
-
-//Очистка файла
-void History::ClearFile()
-{
-    File.close();
+    if(H.size() == 0) throw EmptyHistory;
+    return H;
 }

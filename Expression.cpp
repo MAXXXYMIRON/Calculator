@@ -6,7 +6,7 @@ Expression::Expression()
 }
 
 //Гетер выражения
-string Expression::GetExpression()
+string Expression::GetExpression() const
 {
     return exp;
 }
@@ -150,6 +150,14 @@ bool Expression::SecondPoint() const
      }
 
      if(exp == "") exp = "0";
+ }
+
+ //Проверить провильно ли введено выражение, чтобы для поиска результата
+ bool Expression::RightExpression() const
+ {
+     return (Digits.find(exp[exp.size() - 1]) != string::npos || exp[exp.size() - 1] == ')')
+     ?  true
+     :  false;
  }
 
 //Очистить выражение

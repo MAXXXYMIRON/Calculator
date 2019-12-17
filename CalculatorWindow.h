@@ -86,5 +86,6 @@ private:
     Expression expres;
     Parser pars;
     History hist;
+    bool open = false;
 };
 #endif // MAINWINDOW_H

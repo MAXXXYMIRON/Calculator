@@ -1,31 +1,25 @@
 #ifndef HISTORY_H
 #define HISTORY_H
-#include<fstream>
 #include<iostream>
-#include<cstdio>
 #include<string>
+#include<vector>
 
 using namespace std;
 
 class History
 {
-    string NameFile;
-    fstream File;
+    vector<string> H;
 public:
     History();
-    History(string fileName);
 
-    //Запись в файл
-    void WriteFile(string Str);
-    //Чтение из файла
-    string ReadFile();
-    //Очистка файла
-    void ClearFile();
+    //Записать выражение в историю
+    void WriteHist(const string& Str);
+    //Считать историю
+    vector<string> GetHistory() const;
 
     enum ERRORS
     {
-        FailedOpenFileRead, //Не удалось открыть файл на чтение
-        IsEmpty //Файл пуст
+        EmptyHistory //У ВАС НЕТ ИСТОРИИ
     };
 };
 

@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     setWindowFlag(Qt::FramelessWindowHint);
     ui->setupUi(this);
+    ui->Hist->setVisible(open);
 }
 
 MainWindow::~MainWindow()
@@ -17,7 +18,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Off_clicked()
 {
-    hist.ClearFile();
     close();
 }
 
@@ -179,26 +179,26 @@ void MainWindow::on_Drop_clicked()
 
 void MainWindow::on_Equal_clicked()
 {
-    hist.WriteFile(expres.GetExpression());
+    if(!expres.RightExpression()) return;
+    hist.WriteHist(expres.GetExpression());
 }
 
 void MainWindow::on_History_clicked()
 {
     try
     {
-        string h = hist.ReadFile();
+        vector<string> h = hist.GetHistory();
+        ui->Hist->setPlainText("");
+        open = !open;
+        ui->Hist->setVisible(open);
+        for(unsigned i = 0; i < h.size(); i++)
+        {
+            ui->Hist->appendPlainText(QString::fromStdString(h[i]));
+        }
     }
     catch (History::ERRORS e)
     {
-        switch(e)
-        {
-        case History::FailedOpenFileRead:
-            QMessageBox::warning(this, "Внимание", "Не удалось открыть историю вычислений");
-            break;
-        default:
-            QMessageBox::warning(this, "Внимание", "История вычислений пуста");
-            break;
-        }
+        QMessageBox::warning(this, "Внимание", "История вычислений пуста");
     }
 }
 

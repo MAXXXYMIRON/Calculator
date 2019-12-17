@@ -16,7 +16,7 @@ public:
 
 public:
     //Гетер выражения
-    string GetExpression();
+    string GetExpression() const;
 
     //Добавить цифру в выражение
     void AddDigit(char digit);
@@ -41,6 +41,9 @@ public:
 
    //Стереть последнюю цифру, операцию, функцию или разделитель
     void Backspace();
+
+    //Проверить провильно ли введено выражение, чтобы для поиска результата
+    bool RightExpression() const;
 
     //Очистить выражение
     void Drop();
