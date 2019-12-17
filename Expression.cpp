@@ -6,6 +6,12 @@ Expression::Expression()
 }
 
 //Гетер выражения
+void Expression::SetExpression(string expres)
+{
+    exp = expres;
+}
+
+//Гетер выражения
 string Expression::GetExpression() const
 {
     return exp;
@@ -155,6 +161,7 @@ bool Expression::SecondPoint() const
  //Проверить провильно ли введено выражение, чтобы для поиска результата
  bool Expression::RightExpression() const
  {
+     if(CheckCloseBracket()) return false;
      return (Digits.find(exp[exp.size() - 1]) != string::npos || exp[exp.size() - 1] == ')')
      ?  true
      :  false;

@@ -13,9 +13,11 @@ class Expression
     const string Separators = "().";
 public:
     Expression();
-
 public:
-    //Гетер выражения
+    //Сеттер выражения
+    void SetExpression(string expres);
+
+    //Геттер выражения
     string GetExpression() const;
 
     //Добавить цифру в выражение

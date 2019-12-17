@@ -84,7 +84,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Expression expres;
-    Parser pars;
     History hist;
     bool open = false;
 };
