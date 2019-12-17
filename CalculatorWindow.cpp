@@ -181,22 +181,13 @@ void MainWindow::on_Equal_clicked()
 {
     if(!expres.RightExpression()) return;
 
-    QString str1 = ui->Expression->text();
-    QString result;
-    QByteArray ba = str1.toLatin1();
-    char *c_str2 = ba.data();
-    TParser parser;
-    parser.Compile(c_str2);
-    parser.Evaluate();
-    result = QString::number(parser.GetResult());
-    if(result == "inf")
-        ui->Expression->setText("0");
-    else
-    {
-        ui->Expression->setText(result);
-        hist.WriteHist(expres.GetExpression());
-        expres.SetExpression(result.toStdString());
-    }
+    parser.ParsingExpression(expres.GetExpression());
+
+    /*
+    ui->Expression->setText(result);
+    hist.WriteHist(expres.GetExpression());
+    expres.SetExpression(result.toStdString());
+    */
 }
 
 void MainWindow::on_History_clicked()
