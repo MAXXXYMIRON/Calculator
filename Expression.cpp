@@ -8,7 +8,13 @@ Expression::Expression()
 //Гетер выражения
 void Expression::SetExpression(string expres)
 {
-    exp = expres;
+    if(expres[0] == '-')
+    {
+        exp = "—";
+        expres.erase(0, 1);
+        exp += expres;
+    }
+    else exp = expres;
 }
 
 //Гетер выражения
@@ -48,17 +54,23 @@ void Expression::AddInFrontOperation(const string& operation)
 }
 
 //Добавить в выражение операцию, типа +, -, *, ^
-void Expression::AddBehindOperations(char operations)
+void Expression::AddBehindOperations(char operation)
 {
+    if(exp == "0" && operation == '-')
+    {
+        exp = "—";
+        return;
+    }
+    if(exp == "—") return;
     if(Operations.find(exp[exp.size() - 1]) != string::npos)
     {
-        exp[exp.size() - 1] = operations;
+        exp[exp.size() - 1] = operation;
         return;
     }
     if(Digits.find(exp[exp.size() - 1]) != string::npos
     || exp[exp.size() - 1] == ')')
     {
-        exp.push_back(operations);
+        exp.push_back(operation);
     }
 }
 

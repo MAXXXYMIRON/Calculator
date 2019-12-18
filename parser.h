@@ -7,7 +7,7 @@ using namespace std;
 class Parser
 {
     const vector<string> Operations =
-    {"+", "-", "*", "/", "^", "√", "Sin", "Cos", "Tan", "Ln", "Exp"};
+    {"+", "-", "*", "/", "^", "√", "Sin", "Cos", "Tan", "Ln", "Exp", "—"};
 public:
     Parser();
 
@@ -23,8 +23,14 @@ private:
     //Вернет два этих выражения
     string SearchInflectionPoint(string mainExp, string& exp1, string& exp2);
 
-    //Проверка правильности выбора точки перегиба
-    bool RightInflectionPoint(unsigned indOper,const string& mainExp);
+    //Проверка правильности выбора точки перегиба для бинарной операции
+    bool RightInflectionPointBinary(unsigned indOper, const string& mainExp);
+
+    //Вернет выражение справа и слева от точки перегиба (бинарной операции)
+    void RightLeftExpression(string mainExp, unsigned indOper, string& exp1, string& exp2);
+
+    //Вернет выражение справа от точки перегиба (унарной операции)
+    void RightExpression(string mainExp, string& exp1, string& exp2);
 
     //Выполнение опрации в зависимости от точки перегиба
     string RunOperation(const string& oper, float exp1, float exp2);

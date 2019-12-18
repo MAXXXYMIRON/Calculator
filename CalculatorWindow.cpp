@@ -181,13 +181,11 @@ void MainWindow::on_Equal_clicked()
 {
     if(!expres.RightExpression()) return;
 
-    parser.ParsingExpression(expres.GetExpression());
-
-    /*
-    ui->Expression->setText(result);
     hist.WriteHist(expres.GetExpression());
-    expres.SetExpression(result.toStdString());
-    */
+    expres.SetExpression(parser.ParsingExpression(expres.GetExpression()));
+    hist.WriteHist("= " + expres.GetExpression());
+
+    ui->Expression->setText(QString::fromStdString(expres.GetExpression()));
 }
 
 void MainWindow::on_History_clicked()

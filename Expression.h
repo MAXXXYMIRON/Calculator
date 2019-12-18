@@ -8,7 +8,7 @@ class Expression
 {
     string exp;
     const string Digits = "1234567890";
-    const string Operations = "+-*/^";
+    const string Operations = "+-*/^—";
     const string Functions = "SinCosTanLnExp√";
     const string Separators = "().";
 public:
