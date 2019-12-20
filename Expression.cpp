@@ -62,6 +62,11 @@ void Expression::AddBehindOperations(char operation)
         return;
     }
     if(exp == "—") return;
+    if(Functions.find(exp[exp.size() - 1]) != string::npos || exp[exp.size() - 1] == '(')
+    {
+        exp += "—";
+    }
+
     if(Operations.find(exp[exp.size() - 1]) != string::npos)
     {
         exp[exp.size() - 1] = operation;
@@ -139,19 +144,7 @@ bool Expression::SecondPoint() const
  void Expression::Backspace()
  {
      unsigned index = exp.size() - 1;
-     if(Digits.find(exp[exp.size() - 1]) != string::npos)
-     {
-         exp.erase(index, 1);
-     }
-     else if(Operations.find(exp[exp.size() - 1]) != string::npos)
-     {
-         exp.erase(index, 1);
-     }
-     else if(Separators.find(exp[exp.size() - 1]) != string::npos)
-     {
-         exp.erase(index, 1);
-     }
-     else if(Functions.find(exp[exp.size() - 1]) != string::npos)
+     if(Functions.find(exp[exp.size() - 1]) != string::npos)
      {
         if(exp.substr(index - 1) == "Ln")
         {
@@ -161,11 +154,17 @@ bool Expression::SecondPoint() const
         || exp.substr(index - 2) == "Cos"
         || exp.substr(index - 2) == "Tan"
         || exp.substr(index - 2) == "Exp"
-        || exp.substr(index - 2) == "√")
+        || exp.substr(index - 2) == "√"
+        || exp.substr(index - 2) == "—")
         {
             exp.erase(index - 2, 3);
         }
      }
+     else
+     {
+         exp.erase(index, 1);
+     }
+
 
      if(exp == "") exp = "0";
  }

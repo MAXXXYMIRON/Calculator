@@ -144,7 +144,7 @@ string Parser::RunOperation(const string& oper, float exp1, float exp2)
     else if (oper == "*") return to_string(exp1 * exp2);
     else if (oper == "/") return (exp2 == 0) ? "0" : to_string(exp1 / exp2);
     else if (oper == "^") return to_string(pow(exp1, exp2));
-    else if (oper == "√") return to_string(sqrt(exp1+exp2));
+    else if (oper == "√") return (exp1 + exp2 < 0) ? "0" : to_string(sqrt(exp1+exp2));
     else if (oper == "Sin") return to_string(sin(exp1+exp2));
     else if (oper == "Cos") return to_string(cos(exp1+exp2));
     else if (oper == "Tan") return to_string(tan(exp1+exp2));
